@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
     public Transform compruebaSuelo;
     public LayerMask layerSuelo;
     private Animator animator;
+    public Transform puntoInicio;
+    public Transform playerTransform;
+    public AudioClip sonidoMoneda;
+    public AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -53,12 +58,18 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            
+            gameManager.QuitarVida();
+            playerTransform.position = puntoInicio.position;
         }
         if (collision.gameObject.CompareTag("Moneda"))
         {
+            audioSource.PlayOneShot(sonidoMoneda);
             gameManager.SumarPuntos();
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Final"))
+        {
+            gameManager.LlegarFinal();
         }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemigo
   - Moneda
+  - Final
   layers:
   - Default
   - TransparentFX
